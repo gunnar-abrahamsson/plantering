@@ -35,7 +35,7 @@ function LoginPage({ history }) {
 
     const user = useContext(AuthContext)
     if(user) {
-        console.log('user', user)
+        //redirect to main if user is logged in
         return <Redirect to="/" />
     }
     
