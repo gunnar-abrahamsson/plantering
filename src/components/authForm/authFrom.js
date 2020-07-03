@@ -1,12 +1,12 @@
 import React from 'react';
-import './loginForm.scss';
+import './authForm.scss';
 
 function LoginForm(props) {
 	return (
 		<form onSubmit={props.submitForm}>
             <input onChange={props.handleFormInputChanges} value={props.inputValue.email} type="email" id="email" placeholder="Email" required />
             <input onChange={props.handleFormInputChanges} value={props.inputValue.password} type="password" id="password" placeholder="Password" required />
-            <button type="submit">Login</button>
+            <button type="submit">{props.formType}</button>
         </form>
 	);
 }

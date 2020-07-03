@@ -4,6 +4,7 @@ import { AuthProvider } from './auth/userContext'
 import ProtectedRoute from './components/protectedRoute/protectedRoute'
 import LoginPage from './components/loginPage/loginPage';
 import Main from './components/main/main'
+import SignupPage from './components/signupPage/signupPage';
 
 import './App.scss';
 
@@ -12,6 +13,7 @@ function App() {
 		<AuthProvider>
 			<Switch>
 				<Route exact path="/login" component={LoginPage} />
+				<Route exact path="/signup" component={SignupPage} />
 				<ProtectedRoute path="/" component={Main} />
 			</Switch>
 		</AuthProvider>

@@ -4,7 +4,7 @@ import { AuthContext } from '../../auth/userContext'
 
 function ProtectedRoute({component: Component, ...rest}) {
 	//Get user
-	const { user } = useContext(AuthContext)
+    const user = useContext(AuthContext)
 	return (
 		<Route {...rest}
 			render={(props) => {

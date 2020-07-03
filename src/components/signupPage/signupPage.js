@@ -1,25 +1,23 @@
-import React, { useState, useCallback, useContext } from 'react';
-import { withRouter, Redirect } from 'react-router-dom'
-import './loginPage.scss';
+import React, { useState, useCallback } from 'react';
+import { withRouter } from 'react-router-dom';
 import AuthForm from '../authForm/authFrom';
 import firebase from '../../auth/firebase';
-import { AuthContext } from '../../auth/userContext';
 
-function LoginPage({ history }) {
+function SignupPage({ history }) {
     const [formInputValues, setFormInputValues] = useState({
         email: '',
         password: '',
     })
 
-    const login = useCallback( async (email, password) => {
+    const createAccount = useCallback(async (email, password) => {
+        //send login data to firebase
         try {
-            //send login data to firebase
-            await firebase.auth().signInWithEmailAndPassword(email, password);
+            await firebase.auth().createUserWithEmailAndPassword(email, password);
             history.push('/');
         } catch (err) {
-            console.error(err);
+            console.error(err)
         }
-    }, [history]);
+    }, [history])
     
     const handleFormInputChanges = (e) => {
         setFormInputValues({
@@ -30,25 +28,19 @@ function LoginPage({ history }) {
 
     const submitForm = (e) => {
         e.preventDefault();
-        login(formInputValues.email, formInputValues.password)
+        createAccount(formInputValues.email, formInputValues.password)
     }
 
-    const user = useContext(AuthContext)
-    if(user) {
-        console.log('user', user)
-        return <Redirect to="/" />
-    }
-    
 	return (
 		<div>
             <AuthForm 
                 submitForm={submitForm}
                 handleFormInputChanges={handleFormInputChanges}
                 inputValue={formInputValues}
-                formType={'Login!'}
+                formType={'signup!'}
                 />
 		</div>
 	);
 }
 
-export default withRouter(LoginPage);
+export default withRouter(SignupPage);
