@@ -3,7 +3,7 @@ import './loginPage.scss';
 import LoginForm from '../loginForm/loginFrom';
 import firebase from '../../auth/firebase';
 
-function LoginPage(props) {
+function SignupPage(props) {
     const [formInputValues, setFormInputValues] = useState({
         email: '',
         password: '',
@@ -11,7 +11,7 @@ function LoginPage(props) {
 
     const login = (email, password) => {
 		//send login data to firebase
-        firebase.auth().signInWithEmailAndPassword(email, password);
+        firebase.auth().createUserWithEmailAndPassword(email, password);
     }
     
     const handleFormInputChanges = (e) => {
@@ -28,7 +28,6 @@ function LoginPage(props) {
 
 	return (
 		<div>
-			is user logged in? {props.user ? 'True' : 'false'}
             <LoginForm 
                 submitForm={submitForm}
                 handleFormInputChanges={handleFormInputChanges}
@@ -38,4 +37,4 @@ function LoginPage(props) {
 	);
 }
 
-export default LoginPage;
+export default SignupPage;
