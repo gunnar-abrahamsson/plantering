@@ -1,7 +1,7 @@
 import * as firebase from 'firebase';
 import 'firebase/auth'
 const firebaseConfig = {
-	apiKey: process.env.REACT_APP_FIRE_API_KEY,
+	apiKey: 'AIzaSyDj27oNWuwVkR60v4PF8CxHlr7AyS5qNSY',
 	authDomain: process.env.REACT_APP_FIRE_AUTH_DOMAIN,
 	databaseURL: process.env.REACT_APP_FIRE_DATABASE_URL,
 	projectId: process.env.REACT_APP_FIRE_PROJECT_ID,
