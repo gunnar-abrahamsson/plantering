@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useContext } from 'react';
-import { withRouter, Redirect } from 'react-router-dom'
+import React, { useState, useContext } from 'react';
+import { withRouter, Redirect, Link } from 'react-router-dom'
 import './loginPage.scss';
 import AuthForm from '../authForm/authFrom';
 import firebase from '../../auth/firebase';
@@ -11,7 +11,7 @@ function LoginPage({ history, location }) {
         password: '',
     })
 
-    const login = useCallback( async (email, password) => {
+    const login = async (email, password) => {
         try {
             //send login data to firebase
             await firebase.auth().signInWithEmailAndPassword(email, password);
@@ -19,7 +19,7 @@ function LoginPage({ history, location }) {
         } catch (err) {
             console.error(err);
         }
-    }, [history]);
+    };
     
     const handleFormInputChanges = (e) => {
         setFormInputValues({
@@ -46,7 +46,12 @@ function LoginPage({ history, location }) {
                 handleFormInputChanges={handleFormInputChanges}
                 inputValue={formInputValues}
                 formType={'Logga In!'}
-                />
+            />
+            <div className="formList container">
+                <ul>
+                    <li><Link to={'/registrera'}>Skapa användare</Link></li>
+                </ul>
+            </div>
 		</div>
 	);
 }

@@ -12,7 +12,7 @@ function ProtectedRoute({component: Component, ...rest}) {
 					return <Redirect to={
 						{
 							//redirect to login
-							pathname: '/login',
+							pathname: '/loggain',
 							// state location to previus page
 							state: {
 								from: props.location
