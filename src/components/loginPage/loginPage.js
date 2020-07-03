@@ -5,7 +5,7 @@ import AuthForm from '../authForm/authFrom';
 import firebase from '../../auth/firebase';
 import { AuthContext } from '../../auth/userContext';
 
-function LoginPage({ history }) {
+function LoginPage({ history, location }) {
     const [formInputValues, setFormInputValues] = useState({
         email: '',
         password: '',

@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{user}}>
+        <AuthContext.Provider value={user}>
             {/* Render children components */}
             {children}
         </AuthContext.Provider>
