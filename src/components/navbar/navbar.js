@@ -18,7 +18,7 @@ function Navbar() {
 			{user ?
 				<ul className="navbar-nav">
 					<li className="nav-item active logout" onClick={logout}>
-						<span className="nav-link">Logout</span>
+						<span className="nav-link">Logga ut</span>
 					</li>
 				</ul>
 				: ''
