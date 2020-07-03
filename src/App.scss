@@ -1,5 +1,13 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
+body {
+    background-color: rgba(132, 192, 209, 0.404);
+}
+
+.table {
+    margin-top: 2rem;
+}
+
 .formList {
     ul {
         display: flex;

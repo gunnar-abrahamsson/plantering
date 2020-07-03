@@ -13,7 +13,7 @@ function Navbar() {
 	}
 
 	return (
-		<nav className="navbar navbar-light bg-light">
+		<nav className="navbar navbar-dark bg-dark">
 			<Link className="navbar-brand" to="/">Planterings Uppföljning</Link>
 			{user ?
 				<ul className="navbar-nav">

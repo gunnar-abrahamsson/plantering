@@ -28,7 +28,7 @@ function LoginForm(props) {
                     required 
                 />
             </div>
-            <button className="btn btn-primary" type="submit">{props.formType}</button>
+            <button className="btn btn-dark" type="submit">{props.formType}</button>
         </form>
 	);
 }
