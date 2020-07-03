@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { withRouter } from 'react-router-dom';
 import AuthForm from '../authForm/authFrom';
 import firebase from '../../auth/firebase';
+import ErrorMessage from '../error/errorMessage';
 
 function SignupPage({ history }) {
     const [formInputValues, setFormInputValues] = useState({
@@ -9,15 +10,18 @@ function SignupPage({ history }) {
         password: '',
     });
 
-    const createAccount = async (email, password) => {
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const createAccount = useCallback(async (email, password) => {
         //send login data to firebase
         try {
+            setErrorMessage('')
             await firebase.auth().createUserWithEmailAndPassword(email, password);
             history.push('/');
         } catch (err) {
-            console.error(err)
+            setErrorMessage(err.message)
         }
-    }
+    }, [history])
     
     const handleFormInputChanges = (e) => {
         setFormInputValues({
@@ -39,6 +43,10 @@ function SignupPage({ history }) {
                 inputValue={formInputValues}
                 formType={'Registrera Användare!'}
             />
+            {errorMessage ? 
+                <ErrorMessage message={errorMessage} />
+                : ''
+            }
 		</div>
 	);
 }

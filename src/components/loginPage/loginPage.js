@@ -1,25 +1,31 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import { withRouter, Redirect, Link } from 'react-router-dom'
-import './loginPage.scss';
-import AuthForm from '../authForm/authFrom';
 import firebase from '../../auth/firebase';
 import { AuthContext } from '../../auth/userContext';
 
-function LoginPage({ history, location }) {
+import './loginPage.scss';
+
+import AuthForm from '../authForm/authFrom';
+import ErrorMessage from '../error/errorMessage';
+
+function LoginPage({ history }) {
     const [formInputValues, setFormInputValues] = useState({
         email: '',
         password: '',
     })
 
-    const login = async (email, password) => {
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const login = useCallback(async (email, password) => {
         try {
             //send login data to firebase
+            setErrorMessage('');
             await firebase.auth().signInWithEmailAndPassword(email, password);
             history.push('/');
         } catch (err) {
-            console.error(err);
+            setErrorMessage(err.message)
         }
-    };
+    }, [history]);
     
     const handleFormInputChanges = (e) => {
         setFormInputValues({
@@ -46,12 +52,17 @@ function LoginPage({ history, location }) {
                 handleFormInputChanges={handleFormInputChanges}
                 inputValue={formInputValues}
                 formType={'Logga In!'}
+                errorMessage={errorMessage}
             />
             <div className="formList container">
                 <ul>
                     <li><Link to={'/registrera'}>Skapa användare</Link></li>
                 </ul>
             </div>
+            {errorMessage ? 
+                <ErrorMessage message={errorMessage} />
+                : ''
+            }
 		</div>
 	);
 }

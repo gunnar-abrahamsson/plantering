@@ -8,7 +8,11 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         //update user state when users auth state changes on firebase
-        firebase.auth().onAuthStateChanged(setUser)
+        const unsubscribe = firebase.auth().onAuthStateChanged(setUser)
+        return () => {
+            console.log('Unsubscribe');
+            unsubscribe();
+        }
     }, []);
 
     return (

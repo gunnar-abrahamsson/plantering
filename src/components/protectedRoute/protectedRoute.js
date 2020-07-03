@@ -9,16 +9,7 @@ function ProtectedRoute({component: Component, ...rest}) {
 		<Route {...rest}
 			render={(props) => {
 				if(!user){
-					return <Redirect to={
-						{
-							//redirect to login
-							pathname: '/loggain',
-							// state location to previus page
-							state: {
-								from: props.location
-							}
-						}
-					} />
+					return <Redirect to={'/loggain'} />
 				}
 				return <Component {...props} />
 			}}
