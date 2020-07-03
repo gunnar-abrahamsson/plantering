@@ -37,7 +37,7 @@ function SignupPage({ history }) {
                 submitForm={submitForm}
                 handleFormInputChanges={handleFormInputChanges}
                 inputValue={formInputValues}
-                formType={'signup!'}
+                formType={'Registrera Användare!'}
                 />
 		</div>
 	);

@@ -45,7 +45,7 @@ function LoginPage({ history, location }) {
                 submitForm={submitForm}
                 handleFormInputChanges={handleFormInputChanges}
                 inputValue={formInputValues}
-                formType={'Login!'}
+                formType={'Logga In!'}
                 />
 		</div>
 	);

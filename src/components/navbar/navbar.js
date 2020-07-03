@@ -5,7 +5,7 @@ import firebase from '../../auth/firebase'
 import './navbar.scss'
 import { AuthContext } from '../../auth/userContext';
 
-function Navbar(props) {
+function Navbar() {
 	const user = useContext(AuthContext);
 
 	const logout = () => {
