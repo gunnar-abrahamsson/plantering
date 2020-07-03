@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import AuthForm from '../authForm/authFrom';
 import firebase from '../../auth/firebase';
 import ErrorMessage from '../error/errorMessage';
@@ -43,6 +43,11 @@ function SignupPage({ history }) {
                 inputValue={formInputValues}
                 formType={'Registrera Användare!'}
             />
+            <div className="formList container">
+                <ul>
+                    <li><Link to={'/loggain'}>Logga in</Link></li>
+                </ul>
+            </div>
             {errorMessage ? 
                 <ErrorMessage message={errorMessage} />
                 : ''

@@ -3,8 +3,6 @@ import { withRouter, Redirect, Link } from 'react-router-dom'
 import firebase from '../../auth/firebase';
 import { AuthContext } from '../../auth/userContext';
 
-import './loginPage.scss';
-
 import AuthForm from '../authForm/authFrom';
 import ErrorMessage from '../error/errorMessage';
 
