@@ -1,7 +1,7 @@
 import React from 'react';
 import './main.scss';
 
-import ObjectTable from './objectTable'
+import ObjectTable from '../objectTable/objectTable'
 
 function Main(props) {
 	return (
