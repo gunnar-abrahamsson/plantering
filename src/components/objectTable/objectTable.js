@@ -60,20 +60,6 @@ function ObjectTable(props) {
                     </thead>
                         <tbody>
                             {tableData}
-                            <tr>
-                                <th scope="row">D213321</th>
-                                <td>AHA</td>
-                                <td>Gran</td>
-                                <td>1800/1880</td>
-                                <td><button className="btn btn-dark w-100" type="submit">info</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">D123312</th>
-                                <td>Getingberg</td>
-                                <td>Tall</td>
-                                <td>2000/2100</td>
-                                <td><button className="btn btn-dark w-100" type="submit">info</button></td>
-                            </tr>
                         </tbody>
                 </table>
             }
