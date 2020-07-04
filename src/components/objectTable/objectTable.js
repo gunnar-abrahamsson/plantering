@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { Link } from 'react-router-dom'
 import ErrorMessage from '../error/errorMessage';
 import { db } from '../../auth/firebase'
 
@@ -12,26 +13,30 @@ function ObjectTable(props) {
             try {
                 const querySnapshot = await db.collection('planteringsObject').get();
                 // save array to variable before setting it in plantobjects
+                let planteringsObjectsArray = [];
                 querySnapshot.forEach(doc => {
-                    setPlantingObjects([...plantingObjects, doc.data()])
-                })
+                    planteringsObjectsArray.push({...doc.data(), id: doc.id})
+                });
+                setPlantingObjects(planteringsObjectsArray);
                 setIsLoading(false);
             } catch (err) {
                 setErrorMessage(err.message)
             }
         }
+
         getPlantingObjects();
-    }, [])
+        
+    }, []);
 
     const tableData = plantingObjects.map((plantingObject, index) => {
-        const {objectId, name, treeType, goal} = plantingObject
+        const {objectId, name, treeType, goal, id} = plantingObject
         return (
             <tr key={index}>
                 <th scope="row">{objectId}</th>
                 <td>{name}</td>
                 <td>{treeType}</td>
                 <td>{goal}</td>
-                <td><button className="btn btn-dark w-100" type="submit">info</button></td>
+                <td><Link to={`/${id}`} className="btn btn-dark w-100" type="submit">info</Link></td>
             </tr>
         )
     })
