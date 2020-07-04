@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom'
-import firebase from '../../auth/firebase'
+import { auth } from '../../auth/firebase'
 
 import './navbar.scss'
 import { AuthContext } from '../../auth/userContext';
@@ -9,7 +9,7 @@ function Navbar() {
 	const user = useContext(AuthContext);
 
 	const logout = () => {
-		firebase.auth().signOut()
+		auth.signOut()
 	}
 
 	return (

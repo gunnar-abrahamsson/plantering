@@ -4,9 +4,17 @@ body {
     background-color: rgba(132, 192, 209, 0.404);
 }
 
+.loading{
+    margin-top: 4rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .table {
     margin-top: 2rem;
 }
+
 
 .formList {
     ul {

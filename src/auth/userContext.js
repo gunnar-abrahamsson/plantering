@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import firebase from './firebase'
+import {auth} from './firebase'
 
 export const AuthContext = React.createContext(null);
 
@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         //update user state when users auth state changes on firebase
-        const unsubscribe = firebase.auth().onAuthStateChanged(setUser)
+        const unsubscribe = auth.onAuthStateChanged(setUser)
         return () => {
             console.log('Unsubscribe');
             unsubscribe();

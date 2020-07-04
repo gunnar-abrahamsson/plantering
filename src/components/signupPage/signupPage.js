@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import AuthForm from '../authForm/authFrom';
-import firebase from '../../auth/firebase';
+import { auth } from '../../auth/firebase';
 import ErrorMessage from '../error/errorMessage';
 
 function SignupPage({ history }) {
@@ -16,7 +16,7 @@ function SignupPage({ history }) {
         //send login data to firebase
         try {
             setErrorMessage('')
-            await firebase.auth().createUserWithEmailAndPassword(email, password);
+            await auth.createUserWithEmailAndPassword(email, password);
             history.push('/');
         } catch (err) {
             setErrorMessage(err.message)

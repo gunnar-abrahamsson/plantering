@@ -1,49 +1,83 @@
-import React from 'react';
-import ObjectTableBody from './objectTableBody'
-import ObjectTableHead from './objectTableHead'
-import ObjectTableRow from './objectTableRow'
-import ObjectTableTd from './objectTableTd'
-import ObjectTableTh from './objectTableTh'
+import React, {useEffect, useState} from 'react';
+import ErrorMessage from '../error/errorMessage';
+import { db } from '../../auth/firebase'
 
 function ObjectTable(props) {
-
+    const [plantingObjects, setPlantingObjects] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [errorMessage, setErrorMessage] = useState(null)
     // Fetch table data from fire base
+    useEffect(() => {
+        const getPlantingObjects = async () => {
+            try {
+                const querySnapshot = await db.collection('planteringsObject').get();
+                // save array to variable before setting it in plantobjects
+                querySnapshot.forEach(doc => {
+                    setPlantingObjects([...plantingObjects, doc.data()])
+                })
+                setIsLoading(false);
+            } catch (err) {
+                setErrorMessage(err.message)
+            }
+        }
+        getPlantingObjects();
+    }, [])
 
-
+    const tableData = plantingObjects.map((plantingObject, index) => {
+        const {objectId, name, treeType, goal} = plantingObject
+        return (
+            <tr key={index}>
+                <th scope="row">{objectId}</th>
+                <td>{name}</td>
+                <td>{treeType}</td>
+                <td>{goal}</td>
+                <td><button className="btn btn-dark w-100" type="submit">info</button></td>
+            </tr>
+        )
+    })
 	return (
-        <table className="table table-striped">
-            <ObjectTableHead>
-                <ObjectTableRow>
-                    <ObjectTableTh scope={'col'} colSpan={1} text={'Id'} />
-                    <ObjectTableTh scope={'col'} colSpan={1} text={'Namn'} />
-                    <ObjectTableTh scope={'col'} colSpan={1} text={'Trädslag'} />
-                    <ObjectTableTh scope={'col'} colSpan={2} text={'Mål Plantor/ha'} />
-                </ObjectTableRow>
-            </ObjectTableHead>
-            <ObjectTableBody>
-                <ObjectTableRow>
-                    <th scope="row">D123324</th>
-                    <td>Tallträsket</td>
-                    <td>Tall</td>
-                    <td>2000/1900</td>
-                    <td><button className="btn btn-dark w-100" type="submit">info</button></td>
-                </ObjectTableRow>
-                <ObjectTableRow>
-                    <th scope="row">D213321</th>
-                    <td>AHA</td>
-                    <td>Gran</td>
-                    <td>1800/1880</td>
-                    <td><button className="btn btn-dark w-100" type="submit">info</button></td>
-                </ObjectTableRow>
-                <ObjectTableRow>
-                    <th scope="row">D123312</th>
-                    <td>Getingberg</td>
-                    <td>Tall</td>
-                    <td>2000/2100</td>
-                    <td><button className="btn btn-dark w-100" type="submit">info</button></td>
-                </ObjectTableRow>
-            </ObjectTableBody>
-        </table>
+        <div>
+            {isLoading ?
+                <div className="loading">
+                    <div className="spinner-border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                </div>
+            :
+                <table className="table table-striped">
+                    <thead className="thead-dark">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Namn</th>
+                            <th scope="col">Trädslag</th>
+                            <th scope="col" colSpan="2">Mål Plantor/ha</th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                            {tableData}
+                            <tr>
+                                <th scope="row">D213321</th>
+                                <td>AHA</td>
+                                <td>Gran</td>
+                                <td>1800/1880</td>
+                                <td><button className="btn btn-dark w-100" type="submit">info</button></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">D123312</th>
+                                <td>Getingberg</td>
+                                <td>Tall</td>
+                                <td>2000/2100</td>
+                                <td><button className="btn btn-dark w-100" type="submit">info</button></td>
+                            </tr>
+                        </tbody>
+                </table>
+            }
+            {errorMessage ? 
+                <ErrorMessage message={errorMessage} />
+            :
+                ''
+            }
+        </div>
 	);
 }
 
