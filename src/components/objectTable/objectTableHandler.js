@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom'
+import { db } from '../../auth/firebase'
 import ErrorMessage from '../error/errorMessage';
 import ObjectTable from './objectTable'
-import { db } from '../../auth/firebase'
+import Loading from '../loading/loading';
 
 function ObjectTableHandler(props) {
 	const [plantingObjects, setPlantingObjects] = useState([])
@@ -40,7 +41,7 @@ function ObjectTableHandler(props) {
 				<td>
                     <Link 
                         to={{
-                            path: `/${id}`,
+                            pathname: `/${id}`,
                             state: plantingObject,
                         }} 
                         className="btn btn-dark w-100" 
@@ -53,11 +54,7 @@ function ObjectTableHandler(props) {
 	return (
 		<div>
 			{isLoading ?
-				<div className="loading">
-					<div className="spinner-border" role="status">
-						<span className="sr-only">Loading...</span>
-					</div>
-				</div>
+				<Loading />
 			:
 				<ObjectTable tableData={tableData} />
 			}

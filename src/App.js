@@ -7,6 +7,7 @@ import LoginPage from './components/loginPage/loginPage';
 import Main from './components/main/main'
 import SignupPage from './components/signupPage/signupPage';
 import Navbar from './components/navbar/navbar'
+import ObjectInfo from './components/objectInfo/objectInfo';
 
 import './App.scss';
 
@@ -17,6 +18,7 @@ function App() {
 			<Switch>
 				<Route exact path="/loggain" component={LoginPage} />
 				<Route exact path="/registrera" component={SignupPage} />
+				<Route path="/:info" component={ObjectInfo} />
 				<ProtectedRoute path="/" component={Main} />
 			</Switch>
 		</AuthProvider>

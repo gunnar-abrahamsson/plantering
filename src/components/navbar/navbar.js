@@ -14,7 +14,7 @@ function Navbar() {
 
 	return (
 		<nav className="navbar navbar-dark bg-dark">
-			<Link className="navbar-brand" to="/">Planterings Uppföljning</Link>
+			<Link className="navbar-brand" to="/">Planteringsuppföljning</Link>
 			{user ?
 				<ul className="navbar-nav">
 					<li className="nav-item active logout" onClick={logout}>
