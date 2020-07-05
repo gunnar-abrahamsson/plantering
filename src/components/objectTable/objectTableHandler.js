@@ -37,7 +37,16 @@ function ObjectTableHandler(props) {
 				<td>{name}</td>
 				<td>{treeType}</td>
 				<td>{goal}</td>
-				<td><Link to={`/${id}`} className="btn btn-dark w-100" type="submit">info</Link></td>
+				<td>
+                    <Link 
+                        to={{
+                            path: `/${id}`,
+                            state: plantingObject,
+                        }} 
+                        className="btn btn-dark w-100" 
+                        type="submit"
+                    >info</Link>
+                </td>
 			</tr>
 		)
 	})
