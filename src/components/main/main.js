@@ -1,12 +1,12 @@
 import React from 'react';
 import './main.scss';
 
-import ObjectTable from '../objectTable/objectTable'
+import ObjectTableHandler from '../objectTable/objectTableHandler'
 
 function Main(props) {
 	return (
         <div>
-            <ObjectTable />
+            <ObjectTableHandler />
         </div>
 	);
 }
