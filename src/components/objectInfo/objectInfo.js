@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { db } from '../../auth/firebase';
 
 import ErrorMessage from '../error/errorMessage';
@@ -34,6 +35,7 @@ function ObjectInfo(props) {
     }, [props.location.state, props.match.params.info])
 
     const samples = objectInfo.samples.map((sample, index) => {
+        // Create route to edit sample
         return <li key={index} ><span className="optimal">sample</span></li>;
     })
 
@@ -52,6 +54,7 @@ function ObjectInfo(props) {
                     <h2>Mål plantor/ha: {objectInfo.goal}</h2>
                     <h2>Trädslag: {objectInfo.treeType}</h2>
                     <h2>Provytor</h2>
+                    {/* Create route to create new sample */}
                     <ul>
                         {samples}
                     </ul>
