@@ -5,6 +5,7 @@ import { AuthContext } from '../../auth/userContext';
 
 import AuthForm from '../authForm/authFrom';
 import ErrorMessage from '../error/errorMessage';
+import OfflineLoggin from './offlineLogin';
 
 function LoginPage({ history }) {
     const [formInputValues, setFormInputValues] = useState({
@@ -37,6 +38,10 @@ function LoginPage({ history }) {
         login(formInputValues.email, formInputValues.password)
     }
 
+    const offlineLogginHandler = () => {
+        console.log('Offline loggin')
+    }
+
     const user = useContext(AuthContext)
     if(user) {
         //redirect to main if user is logged in
@@ -55,6 +60,7 @@ function LoginPage({ history }) {
             <div className="formList container">
                 <ul>
                     <li><Link to={'/registrera'}>Skapa användare</Link></li>
+                    <OfflineLoggin offlineLogginHandler={offlineLogginHandler} />
                 </ul>
             </div>
             {errorMessage ? 

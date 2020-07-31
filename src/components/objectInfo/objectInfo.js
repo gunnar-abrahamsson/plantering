@@ -6,7 +6,9 @@ import Loading from '../loading/loading';
 
 function ObjectInfo(props) {
     
-    const [objectInfo, setObjectInfo] = useState({});
+    const [objectInfo, setObjectInfo] = useState({
+        samples: [],
+    });
     const [isLoading, setIsLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null) ;
     
@@ -31,6 +33,10 @@ function ObjectInfo(props) {
         getObjectDocument();
     }, [props.location.state, props.match.params.info])
 
+    const samples = objectInfo.samples.map((sample, index) => {
+        return <li key={index} ><span className="optimal">sample</span></li>;
+    })
+
 	return (
 		<div>
             {errorMessage ?
@@ -40,7 +46,16 @@ function ObjectInfo(props) {
             {isLoading ?
                 <Loading />
             : 
-                objectInfo.name
+                <div>
+                    <h1>Namn: {objectInfo.name}</h1>
+                    <h2>Object Id: {objectInfo.objectId}</h2>
+                    <h2>Mål plantor/ha: {objectInfo.goal}</h2>
+                    <h2>Trädslag: {objectInfo.treeType}</h2>
+                    <h2>Provytor</h2>
+                    <ul>
+                        {samples}
+                    </ul>
+                </div>
             }
         </div>
 	);
